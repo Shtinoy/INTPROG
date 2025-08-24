@@ -1,0 +1,49 @@
+<?php
+// if statement (checking the user log in)
+$isLoggedIn = true;
+
+if ($isLoggedIn) {
+    echo "Welcome back,inna!";
+}
+
+// if else statement (checking if a product is in stock)
+$stock = 0;
+if ($stock > 0) {
+    echo "Product available. You can order now!";
+} else {
+    echo "Sorry, product is out of stock.";
+}
+
+// if elseif statement (assigning shipping fees based on purchase amount)
+$orderAmount = 1500;
+
+if ($orderAmount >= 3000) {
+    echo "Free shipping!";
+} elseif ($orderAmount >= 2000) {
+    echo "Shipping fee: 60 pesos";
+} elseif ($orderAmount > 0) {
+    echo "Shipping fee: 200 pesos";
+} else {
+    echo "Invalid order.";
+}
+
+// Switch statement (choosing payment method)
+$paymentMethod = "GCash";
+
+switch ($paymentMethod) {
+    case "Credit Card":
+        echo "Processing payment via Credit Card.";
+        break;
+    case "PayPal":
+        echo "Processing payment via PayPal.";
+        break;
+    case "GCash":
+        echo "Processing payment via GCash.";
+        break;
+    case "Cash on Delivery":
+        echo "Payment will be collected upon delivery.";
+        break;
+    default:
+        echo "Invalid payment method selected.";
+}
+?>
