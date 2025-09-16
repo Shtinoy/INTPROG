@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gryffindor Group</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap');
+
+    :root {
+      --netflix-red: #e50914;
+      --netflix-dark: #141414;
+      --netflix-light: #f3f3f3;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--netflix-dark);
+      color: var(--netflix-light);
+      margin: 0;
+      padding: 0;
+    }
+
+    .logo-font {
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    .member-card:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease;
+    }
+
+    .hidden-member {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="overflow-hidden">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 bg-black/80 shadow">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+      <div class="flex items-center">
+        <span class="logo-font text-xl sm:text-2xl text-red-600 mr-6">GRYFFINDOR</span>
+        <div class="hidden md:flex space-x-6 text-white text-sm">
+          <a href="#" class="hover:text-red-500">Home</a>
+          <a href="#members" class="hover:text-red-500">Members</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero + Members -->
+  <section class="min-h-screen pt-24 flex flex-col gap-4 px-4 sm:px-6">
+    <!-- Hero Content -->
+    <div class="text-center">
+      <h1 class="logo-font text-red-600 text-4xl sm:text-5xl mb-1">Group 4 Gryffindor</h1>
+      <p class="text-sm sm:text-base text-gray-300 max-w-3xl mx-auto leading-snug">
+        We are a group of passionate IT students who share the same drive for creativity, growth, and learning.
+        From design to programming and leadership, we support each other and value courage, determination, and unity.
+      </p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="max-w-xl mx-auto w-full mt-2">
+      <form method="GET" class="flex gap-2">
+        <input
+          type="text"
+          name="search"
+          value=""
+          placeholder="Search member name..."
+          class="flex-grow p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+          id="searchInput"
+        />
+        <button
+          type="submit"
+          class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Members -->
+    <div id="members" class="w-full">
+      <h2 class="text-xl font-bold border-l-4 border-red-600 pl-3 mb-3">Group Members</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" id="memberList">
+        <!-- Member 1 -->
+        <a href="krizzy.html" class="member-card bg-gray-800 rounded-lg overflow-hidden shadow-lg text-center" data-name="krizzy shane t. gozo">
+          <img src="k.jpeg" alt="Krizzy" class="w-full h-40 object-cover">
+          <div class="p-2">
+            <h3 class="text-base font-bold">Krizzy Shane T. Gozo</h3>
+            <p class="text-gray-400 text-sm">Group Leader</p>
+          </div>
+        </a>
+
+        <!-- Member 2 -->
+        <a href="andrey.html" class="member-card bg-gray-800 rounded-lg overflow-hidden shadow-lg text-center" data-name="andrey kurt l. la torre">
+          <img src="a.jpeg" alt="Andrey" class="w-full h-40 object-cover">
+          <div class="p-2">
+            <h3 class="text-base font-bold">Andrey Kurt L. La Torre</h3>
+            <p class="text-gray-400 text-sm">Member</p>
+          </div>
+        </a>
+
+        <!-- Member 3 -->
+        <a href="shaina.html" class="member-card bg-gray-800 rounded-lg overflow-hidden shadow-lg text-center" data-name="shaina d. tinoy">
+          <img src="s.jpeg" alt="Shaina" class="w-full h-40 object-cover">
+          <div class="p-2">
+            <h3 class="text-base font-bold">Shaina D. Tinoy</h3>
+            <p class="text-gray-400 text-sm">Member</p>
+          </div>
+        </a>
+
+        <!-- Member 4 -->
+        <a href="edmark.html" class="member-card bg-gray-800 rounded-lg overflow-hidden shadow-lg text-center" data-name="edmark a. lupiga">
+          <img src="e.jpeg" alt="Edmark" class="w-full h-40 object-cover">
+          <div class="p-2">
+            <h3 class="text-base font-bold">Edmark A. Lupiga</h3>
+            <p class="text-gray-400 text-sm">Member</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript for Filtering -->
+  <script>
+    function filterMembers(searchTerm) {
+      const members = document.querySelectorAll("#memberList .member-card");
+      searchTerm = searchTerm.toLowerCase();
+
+      members.forEach(member => {
+        const name = member.getAttribute("data-name").toLowerCase();
+        if (name.includes(searchTerm)) {
+          member.classList.remove("hidden-member");
+        } else {
+          member.classList.add("hidden-member");
+        }
+      });
+    }
+
+    // Get search term from URL on load
+    window.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const search = urlParams.get("search");
+      const searchInput = document.getElementById("searchInput");
+
+      if (search) {
+        searchInput.value = search;
+        filterMembers(search);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
